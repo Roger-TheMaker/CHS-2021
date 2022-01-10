@@ -37,3 +37,80 @@ firebase.auth().onAuthStateChanged((user) => {
     // ...
   }
 });
+
+let loginForm = document.getElementById("loginForm");
+
+loginForm.addEventListener("submit", (e) => {
+  //Prevent Default Form Submission Behavior
+  e.preventDefault();
+  console.log("clicked");
+
+  var email = document.getElementById("inputEmail");
+  var password = document.getElementById("inputPassword");
+  console.log(email.value, password.value);
+  if (email.value === "" || password.value === "") {
+    alert("Inputs should not be empty");
+  }
+  if (password.value.length < 6) {
+    alert("Passwords should have a minimum length of 6!");
+    return;
+  }
+
+  auth
+    .signInWithEmailAndPassword(email.value, password.value)
+    .then((userCredential) => {
+      // location.reload();
+      // Signed in
+      var user = userCredential.user;
+      console.log("user", user.email);
+      window.location = "MeasureHeartBeat.html";
+    })
+    .catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // alert("error code", errorCode)
+      alert(errorMessage);
+    });
+});
+
+let RegisterForm = document.getElementById("registerForm");
+
+RegisterForm.addEventListener("submit", (e) => {
+  //Prevent Default Form Submission Behavior
+  e.preventDefault();
+  console.log("clicked");
+
+  var email = document.getElementById("inputEmail1");
+  var password = document.getElementById("inputPassword1");
+  var passwordConfirm = document.getElementById("inputPasswordConfirm1");
+  if (
+    email.value === "" ||
+    password.value === "" ||
+    passwordConfirm.value === ""
+  ) {
+    alert("Inputs should not be empty");
+  }
+  if (password.value.length < 6) {
+    alert("Passwords should have a minimum length of 6!");
+    return;
+  }
+  if (password.value !== passwordConfirm.value) {
+    alert("Passwords do not match!");
+    return;
+  }
+  auth
+    .createUserWithEmailAndPassword(email.value, password.value)
+    .then((userCredential) => {
+      // Signed in
+      var user = userCredential.user;
+      console.log("user", user.email);
+      window.location = "MeasureHeartBeat.html";
+    })
+    .catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log("error code", errorCode);
+      console.log("error Message", errorMessage);
+      alert(errorMessage);
+    });
+});
