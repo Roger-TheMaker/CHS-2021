@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="MeasureHeartBeat.css"
+      id="style"
+    />
+    <link rel="shortcut icon" href="#" />
+    <title>💓 Heart Rate Monitor</title>
+    <style>
+      :root {
+        /* Variables for both color schemes */
+        --transition-duration: 0.2s;
+        --border-radius-small: 6px;
+        --border-radius-medium: 10px;
+        --border-radius-large: 15px;
+      }
+
+      :root {
+        --page-background: #111;
+        --page-color: #ddd;
+        --text-color-muted: #666;
+        --graph-background: transparent;
+        --graph-color: #f76;
+        --backdrop-background: rgba(0, 0, 0, 0.3);
+        --nav-item-background: #151515;
+      }
+
+      /* TODO: Finish light color schemea
+			@media (prefers-color-scheme: light) {
+				:root {
+					--page-background: #fff;
+					--page-color: #222;
+					--text-color-muted: #999;
+					--graph-background: #fff;
+					--graph-color: #f76;
+					--backdrop-background: rgba(200, 200, 200, 0.3);
+					--nav-item-background: #bbb;
+				}
+			}
+			*/
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="main-view">
+        <header>
+          <div>
+            <h1>Heart Rate Monitor</h1>
+            <small>Tap the circle to start / stop</small>
+          </div>
+        </header>
+
+        <main>
+        </main>
+      </div>
+
+      <div class="modal" data-name="debug">
+        <div class="modal-box">
+          <div class="heading">
+            <h1>Debug</h1>
+            <button class="icon-button close">
+              <span>Close</span>
+            </button>
+          </div>
+          <div class="content">
+            <div class="debug-view">
+              <div class="feeds">
+                <video id="camera-feed"></video>
+                <canvas id="sampling-canvas" width="400" height="400"></canvas>
+              </div>
+              <div id="debug-log"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+	<script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-auth.js"></script>
+	<script src="./MeasureHeartBeat.js"></script>
+    <script>
+
+    </script>
+  </body>
+</html>
